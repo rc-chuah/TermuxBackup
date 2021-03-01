@@ -1,2 +1,2 @@
 # TermuxBackup
-This is a bash script to backup your termux home and sysroot directories.
+This is a bash script to backup and restore your termux home and sysroot directories.
