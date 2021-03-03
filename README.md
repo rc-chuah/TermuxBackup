@@ -8,3 +8,7 @@ This is a bash script to backup and restore your termux home and sysroot directo
 3. Change Directory `cd TermuxBackup`
 4. Give execution permission `chmod +x TermuxBackup.sh`
 5. Run script `./TermuxBackup.sh`
+
+## Credits To The Original Creator:
+
+Thanks To Zongou
