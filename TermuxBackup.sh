@@ -19,7 +19,7 @@ function session_mode() {
 }
 
 # Check Storage Permission
-function CheckStoragePermission() {
+function checkStoragePermission() {
     if [[ ! -w /storage/emulated/0 ]]; then
         echo "Setting Up Termux Storage..."
         termux-setup-storage
@@ -30,9 +30,9 @@ function CheckStoragePermission() {
 }
 
 # Check If Backup Directory Exists
-function CheckBackupDir() {
+function checkBackupDir() {
     if [[ ! -d $backupDir ]]; then
-        echo "Backup Directory: "
+        echo "Backup Directory:"
         echo $backupDir
         echo "Backup Directory Does Not Exists"
         # Ask If To Create Backup Directory
@@ -69,7 +69,7 @@ function backup() {
             name="termux.tar.gz"
         fi
         echo "Will Create "$name
-        CleanHistory
+        cleanHistory
         echo "Backing System Up..."
         sleep 5
         cd $termuxRoot/files
@@ -121,14 +121,14 @@ function restore() {
         gzip -d -c $backupDir/$file | tar -xvf - -C $termuxRoot/files
     fi
     if [[ "$session"x = "NORMAL"x ]]; then
-        CleanAllButKeepCoreFunctions
+        cleanAllButKeepCoreFunctions
         tar -xzvf $backupDir/$file -C $termuxRoot/files --recursive-unlink --preserve-permissions
     fi
     echo -e "\033[0;32m Restoring Finished! \033[0m"
 }
 
 # Clean History Function
-function CleanHistory() {
+function cleanHistory() {
     echo "Start Cleaning"
     termuxBashHistory=$termuxRoot"/files/home/.bash_history"
     if [[ -f $termuxBashHistory ]]; then
@@ -143,7 +143,7 @@ function CleanHistory() {
 }
 
 # Clean All But Keep Core Functions, Get 'rm' Alike Effect
-function CleanAllButKeepCoreFunctions() {
+function cleanAllButKeepCoreFunctions() {
     # Clean Files Directory
     cd $termuxRoot/files
     find * -maxdepth 0 | grep -vw 'usr' | xargs rm -rf
@@ -182,9 +182,9 @@ function incorrect_selection() {
 # Start
 until [[ "$option" = "3" ]]; do
      clear
-     CheckStoragePermission
+     checkStoragePermission
      clear
-     CheckBackupDir
+     checkBackupDir
      clear
      session_mode
      echo "This Script Will Backup/Restore Termux"
