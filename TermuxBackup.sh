@@ -2,11 +2,11 @@
 # Created And Scripted by Zongou & RC Chuah-(RaynerSec)
 # https://wiki.termux.com/wiki/Backing_up_Termux
 
-# define presets
+# Define Presets
 backupDir="/storage/emulated/0/termux/backups"
 termuxRoot="/data/data/com.termux"
 
-# check session mode
+# Check Session Mode
 function session_mode() {
     session="NULL"
     if command -v termux-info > /dev/null 2>&1; then
@@ -18,78 +18,81 @@ function session_mode() {
     fi
 }
 
-# check storage permission
-function checkStoragePermission() {
+# Check Storage Permission
+function CheckStoragePermission() {
     if [[ ! -w /storage/emulated/0 ]]; then
         echo "Setting Up Termux Storage..."
         termux-setup-storage
         sleep 5
         echo "Setting Up Termux Storage Completed..."
+        sleep 5
     fi
 }
 
-# check if BackupDir exists
-function checkBackupDir() {
+# Check If Backup Directory Exists
+function CheckBackupDir() {
     if [[ ! -d $backupDir ]]; then
-        echo "backupDir: "
+        echo "Backup Directory: "
         echo $backupDir
-        echo "backupDir does not exists"
-        # ask if to create dir
+        echo "Backup Directory Does Not Exists"
+        # Ask If To Create Backup Directory
         echo ""
-        echo -n "create backupDir? [y/n] "
+        echo -n "Create Backup Directory? [y/n] "
         read answer
         if [[ "$answer"x = "y"x ]]; then
-            echo "creating backupDir..."
+            echo "Creating Backup Directory..."
             mkdir -p $backupDir
             sleep 5
-            echo "creating backupDir completed..."
+            echo "Creating Backup Directory Completed..."
+            sleep 5
             if [[ $? -ne 0 ]]; then
-                echo "create dir failed!"
+                echo "Create Backup Directory Failed!"
                 exit 1
             fi
         else
-            echo "exiting..." && exit 1
+            echo "Exiting..." && exit 1
         fi
     fi
 }
 
 # Backup Function
 function backup() {
-    # check if in NORMAL SESSION
-    # backup will fail when other linux system is installed, force running in NORMAL SESSION
+    # Check If In NORMAL SESSION
+    # Backup Will Fail When Other Linux System Is Installed, Force Running In NORMAL SESSION
     if [[ "$session"x = "NORMAL"x ]]; then
-        echo "type the file name for backup"
-        echo "if empty will use termux.tar.gz"
+        echo "Type The File Name For Backup"
+        echo "If Empty Will Use termux.tar.gz"
         echo ""
         echo -n "Enter File Name For Backup: "
         read name
         if [[ -z $name ]]; then
             name="termux.tar.gz"
         fi
-        echo "will create "$name
-        cleanHistory
-        echo "backing system up..."
+        echo "Will Create "$name
+        CleanHistory
+        echo "Backing System Up..."
+        sleep 5
         cd $termuxRoot/files
         tar -czvf $backupDir/$name ./home ./usr
         if [[ $? -ne 0 ]]; then
-            echo "make sure running in termux default environment."
+            echo "Make Sure Running In Termux Default Environment."
             exit 1
         fi
-        echo -e "\033[0;32m backing up finished! \033[0m"
+        echo -e "\033[0;32m Backing Up Finished! \033[0m"
     else
-        echo "backup is not supported in [FAILSAFE SESSION], exiting..."
+        echo "Backup Is Not Supported In [FAILSAFE SESSION], Exiting..."
     fi
 }
 
 # Restore Function
 function restore() {
-    # check if backupDir is empty
+    # Check If Backup Directory Is Empty
     if [[ $(ls -l $backupDir | grep "^-" | wc -l) -eq 0 ]]; then
-        # empty
-        echo "backupDir is empty! exiting..." && exit 1
+        # Empty
+        echo "Backup Directory Is Empty! Exiting..." && exit 1
     else
-        echo "Note: make sure no background program running."
-        echo "listing backup file..."
+        echo "Note: Make Sure No Background Program Running."
+        echo "Listing Backup File..."
         echo ""
         ls $backupDir
     fi
@@ -99,64 +102,65 @@ function restore() {
     while [[ ! -f $backupDir/$file ]]
     do
         clear
-        echo "no match, try again!"
+        echo "No Match, Try Again!"
         sleep 5
         clear
-        echo "Note: make sure no background program running."
-        echo "listing backup file..."
+        echo "Note: Make Sure No Background Program Running."
+        echo "Listing Backup File..."
         echo ""
         ls $backupDir
         echo ""
         echo -n "Choose A Backup File: "
         read file
     done
-    echo "start restoring!"
-    # use seperated steps is more compatible for lower version of toolbox
+    echo "Start Restoring!"
+    sleep 5
+    # Use Seperated Steps Is More Compatible For Lower Version Of Toolbox
     if [[ "$session"x = "FAILSAFE"x ]]; then
         rm -rf $termuxRoot/files/*
         gzip -d -c $backupDir/$file | tar -xvf - -C $termuxRoot/files
     fi
     if [[ "$session"x = "NORMAL"x ]]; then
-        cleanAllButKeepCoreFunctions
+        CleanAllButKeepCoreFunctions
         tar -xzvf $backupDir/$file -C $termuxRoot/files --recursive-unlink --preserve-permissions
     fi
-    echo -e "\033[0;32m restoring finished! \033[0m"
+    echo -e "\033[0;32m Restoring Finished! \033[0m"
 }
 
 # Clean History Function
-function cleanHistory() {
-    echo "start cleaning"
+function CleanHistory() {
+    echo "Start Cleaning"
     termuxBashHistory=$termuxRoot"/files/home/.bash_history"
     if [[ -f $termuxBashHistory ]]; then
-        echo "clean termuxBashHistory"
+        echo "Clean Termux Bash History"
         rm $termuxBashHistory
     fi
     debianBashHistory=$termuxRoot"/files/home/debian-fs/root/.bash_history"
     if [[ -f $debianBashHistory ]]; then
-        echo "clean debianBashHistory"
+        echo "Clean Debian Bash History"
         rm $debianBashHistory
     fi
 }
 
-# clean all but keep core functions, get 'rm' alike effect
-function cleanAllButKeepCoreFunctions() {
-    # clean files dir
+# Clean All But Keep Core Functions, Get 'rm' Alike Effect
+function CleanAllButKeepCoreFunctions() {
+    # Clean Files Directory
     cd $termuxRoot/files
     find * -maxdepth 0 | grep -vw 'usr' | xargs rm -rf
-    # clean $PREFIX dir
+    # Clean $PREFIX Directory
     cd $termuxRoot/files/usr
     find * -maxdepth 0 | grep -vw '\(bin\|lib\)' | xargs rm -rf
-    # clean bin dir
+    # Clean Bin Directory
     cd $termuxRoot/files/usr/bin
     find * -maxdepth 0 | grep -vw '\(coreutils\|rm\|xargs\|find\|grep\|tar\|gzip\)' | xargs rm -rf
-    # clean lib dir
+    # Clean Lib Directory
     cd $termuxRoot/files/usr/lib
     find * -maxdepth 0 | grep -vw '\(libandroid-glob.so\|libtermux-exec.so\|libiconv.so\|libandroid-support.so\|libgmp.so\)' | xargs rm -rf
-    # clean none exact utils, aggressively
+    # Clean None Exact Utils, Aggressively
     cd $termuxRoot/files/usr/bin
     rm coreutils grep xargs find rm ../lib/libgmp.so ../lib/libandroid-support.so
 
-    # dependencies:
+    # Dependencies:
     # ls libandroid-support.so libgmp.so
     # rm libgmp.so
     # tar libandroid-glob libtermux-exec.so libiconv.so
@@ -165,22 +169,22 @@ function cleanAllButKeepCoreFunctions() {
 # Press Enter To Continue Function
 function press_enter() {
     echo ""
-    echo -n "Press Enter to continue..."
+    echo -n "Press Enter To Continue..."
     read
     clear
 }
 
 # Incorrect Selection Function
 function incorrect_selection() {
-    echo "Incorrect selection! Try again."
+    echo "Incorrect Selection! Try Again."
 }
 
-# start
+# Start
 until [[ "$option" = "3" ]]; do
      clear
-     checkStoragePermission
+     CheckStoragePermission
      clear
-     checkBackupDir
+     CheckBackupDir
      clear
      session_mode
      echo "This Script Will Backup/Restore Termux"
