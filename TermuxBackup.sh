@@ -179,7 +179,7 @@ function incorrect_selection() {
     echo "Incorrect Selection! Try Again."
 }
 
-# Start
+# Usage Menu
 until [[ "$option" = "3" ]]; do
      clear
      checkStoragePermission
