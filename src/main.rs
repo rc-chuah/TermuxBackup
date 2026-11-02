@@ -1,5 +1,6 @@
-// TermuxBackup - Rust rewrite
-// Original bash script by Zongou & RC Chuah-(RaynerSec)
+// termux-backup - Rust rewrite
+// Original bash script by Zongou
+// Rewritten in Rust by RC Chuah-(RaynerSec)
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 use std::fs;
