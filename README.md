@@ -1,8 +1,8 @@
-# TermuxBackup
+# termux-backup
 A Rust program to backup and restore your Termux home and sysroot directories.
 
 ## Usage
-### How To Use TermuxBackup
+### How To Use termux-backup
 1. Install Dependencies In Termux `pkg update -y && pkg install git -y`
 2. Git Clone Repo `git clone https://github.com/rc-chuah/TermuxBackup`
 3. Change Directory `cd TermuxBackup`
