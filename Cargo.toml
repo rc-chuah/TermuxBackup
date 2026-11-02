@@ -4,12 +4,11 @@ version = "1.0.0"
 edition = "2024"
 rust-version = "1.85"
 authors = ["RC Chuah-(RaynerSec)", "Zongou"]
-description = "Backup and restore Termux home and sysroot directories"
+description = "A Rust program to backup and restore your Termux home and sysroot directories."
 documentation = "https://github.com/rc-chuah/TermuxBackup"
 homepage = "https://github.com/rc-chuah/TermuxBackup"
 repository = "https://github.com/rc-chuah/TermuxBackup"
-license = "GPL-3.0"
-license-file = "LICENSE"
+license = "GPL-3.0-or-later"
 readme = "README.md"
 keywords = ["termux", "backup", "restore", "android", "archive"]
 categories = ["command-line-utilities"]
@@ -49,12 +48,10 @@ overflow-checks = false
 opt-level = 0
 debug = true
 lto = false
-panic = "unwind"
 codegen-units = 16
 
 [profile.bench]
 opt-level = 3
 debug = false
 lto = true
-panic = "unwind"
 codegen-units = 1
