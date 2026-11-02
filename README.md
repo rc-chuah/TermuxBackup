@@ -9,12 +9,21 @@ A Rust program to backup and restore your Termux home and sysroot directories.
 4. Give execution permission `chmod +x TermuxBackup.sh`
 5. Run script `./TermuxBackup.sh`
 
-## Star History
-<a href="https://www.star-history.com/#rc-chuah/TermuxBackup&Date">
+## Star History (Mirror 1)
+<a href="https://www.star-history.com/#rc-chuah/termux-backup&Date">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=rc-chuah/TermuxBackup&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=rc-chuah/TermuxBackup&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=rc-chuah/TermuxBackup&type=Date" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=rc-chuah/termux-backup&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=rc-chuah/termux-backup&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=rc-chuah/termux-backup&type=Date" />
+ </picture>
+</a>
+
+## Star History (Mirror 1)
+<a href="https://www.star-history.com/#RaynerSec/termux-backup&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=RaynerSec/termux-backup&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=RaynerSec/termux-backup&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=RaynerSec/termux-backup&type=Date" />
  </picture>
 </a>
 
