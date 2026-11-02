@@ -1,6 +1,6 @@
 // TermuxBackup - Rust rewrite
 // Original bash script by Zongou & RC Chuah-(RaynerSec)
-// SPDX-License-Identifier: GPL-3.0
+// SPDX-License-Identifier: GPL-3.0-or-later
 
 use std::fs;
 use std::io::{self, BufRead, Write};
