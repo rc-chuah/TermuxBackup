@@ -1,5 +1,5 @@
 # TermuxBackup
-This is a bash script to backup and restore your termux home and sysroot directories.
+A Rust program to backup and restore your Termux home and sysroot directories.
 
 ## Usage
 ### How To Use TermuxBackup
@@ -17,9 +17,6 @@ This is a bash script to backup and restore your termux home and sysroot directo
    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=rc-chuah/TermuxBackup&type=Date" />
  </picture>
 </a>
-
-## Stargazers Over Time
-[![Stargazers Over Time](https://starchart.cc/rc-chuah/TermuxBackup.svg?variant=adaptive)](https://starchart.cc/rc-chuah/TermuxBackup)
 
 ## Credits To The Original Creator
 Thanks To Zongou
