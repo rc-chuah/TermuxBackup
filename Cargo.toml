@@ -1,0 +1,60 @@
+[package]
+name = "termux-backup"
+version = "1.0.0"
+edition = "2024"
+rust-version = "1.85"
+authors = ["RC Chuah-(RaynerSec)", "Zongou"]
+description = "Backup and restore Termux home and sysroot directories"
+documentation = "https://github.com/rc-chuah/TermuxBackup"
+homepage = "https://github.com/rc-chuah/TermuxBackup"
+repository = "https://github.com/rc-chuah/TermuxBackup"
+license = "GPL-3.0"
+license-file = "LICENSE"
+readme = "README.md"
+keywords = ["termux", "backup", "restore", "android", "archive"]
+categories = ["command-line-utilities"]
+exclude = [
+    ".git",
+    ".github",
+    ".gitignore",
+    "target",
+    "Cargo.lock",
+    "*.sh",
+    "old",
+]
+
+[dependencies]
+tar = "0.4"
+flate2 = "1.0"
+
+[profile.dev]
+opt-level = 0
+debug = true
+strip = "none"
+lto = false
+panic = "unwind"
+codegen-units = 256
+overflow-checks = true
+
+[profile.release]
+opt-level = 3
+debug = false
+strip = true
+lto = true
+panic = "abort"
+codegen-units = 1
+overflow-checks = false
+
+[profile.test]
+opt-level = 0
+debug = true
+lto = false
+panic = "unwind"
+codegen-units = 16
+
+[profile.bench]
+opt-level = 3
+debug = false
+lto = true
+panic = "unwind"
+codegen-units = 1
