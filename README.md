@@ -71,5 +71,6 @@ termux-backup
  </picture>
 </a>
 
-## Credits To The Original Creator
-Thanks To Zongou
+## Credits
+Original bash script by Zongou.
+Rewritten in Rust by RC Chuah-(RaynerSec).
