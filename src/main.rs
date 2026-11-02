@@ -298,7 +298,7 @@ fn restore(session: SessionMode) -> io::Result<()> {
                 .arg("--preserve-permissions")
                 .status()?;
             if !status.success() {
-                return Err(io::Error::new(io::ErrorKind::Other, "tar restore failed"));
+                return Err(io::Error::other("tar restore failed"));
             }
         }
     }
