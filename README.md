@@ -3,11 +3,39 @@ A Rust program to backup and restore your Termux home and sysroot directories.
 
 ## Usage
 ### How To Use termux-backup
-1. Install Dependencies In Termux `pkg update -y && pkg install git -y`
-2. Git Clone Repo `git clone https://github.com/rc-chuah/TermuxBackup`
-3. Change Directory `cd TermuxBackup`
-4. Give execution permission `chmod +x TermuxBackup.sh`
-5. Run script `./TermuxBackup.sh`
+1. Install dependencies in Termux:
+   ```bash
+   pkg update -y && pkg install git rust tar gzip -y
+   ```
+2. Git clone the repository:
+   ```bash
+   git clone https://github.com/rc-chuah/termux-backup
+   ```
+3. Change directory:
+   ```bash
+   cd termux-backup
+   ```
+4. Build the release binary:
+   ```bash
+   cargo build --release
+   ```
+5. Run the program:
+   ```bash
+   ./target/release/termux-backup
+   ```
+
+#### Optional: Install to PATH
+```bash
+cp target/release/termux-backup $PREFIX/bin/termux-backup
+chmod +x $PREFIX/bin/termux-backup
+termux-backup
+```
+
+### Notes
+- Backup only works in a normal Termux session.
+- Restore works in both normal and failsafe sessions.
+- Backups are stored at `/storage/emulated/0/termux/backups`.
+- The restore process in a normal session will clean the current Termux environment before restoring, keeping only essential core utilities needed for extraction.
 
 ## Star History (Mirror 1)
 <a href="https://www.star-history.com/#rc-chuah/termux-backup&Date">
@@ -18,7 +46,7 @@ A Rust program to backup and restore your Termux home and sysroot directories.
  </picture>
 </a>
 
-## Star History (Mirror 1)
+## Star History (Mirror 2)
 <a href="https://www.star-history.com/#RaynerSec/termux-backup&Date">
  <picture>
    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=RaynerSec/termux-backup&type=Date&theme=dark" />
