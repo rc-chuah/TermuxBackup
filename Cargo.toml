@@ -12,15 +12,6 @@ license = "GPL-3.0-or-later"
 readme = "README.md"
 keywords = ["termux", "backup", "restore", "android", "archive"]
 categories = ["command-line-utilities"]
-exclude = [
-    ".git",
-    ".github",
-    ".gitignore",
-    "target",
-    "Cargo.lock",
-    "*.sh",
-    "old",
-]
 
 [[bin]]
 name = "termux-backup"
