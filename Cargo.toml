@@ -22,6 +22,10 @@ exclude = [
     "old",
 ]
 
+[[bin]]
+name = "termux-backup"
+path = "src/main.rs"
+
 [dependencies]
 tar = "0.4"
 flate2 = "1.0"
