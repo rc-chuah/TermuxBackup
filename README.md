@@ -5,7 +5,7 @@ A Rust program to backup and restore your Termux home and sysroot directories.
 ### How To Use termux-backup
 
 #### Install from crates.io
-1. Install using Cargo
+1. Install using Cargo:
    ```bash
    cargo install --locked termux-backup
    ```
@@ -13,7 +13,11 @@ A Rust program to backup and restore your Termux home and sysroot directories.
    ```bash
    cargo install termux-backup
    ```
-2. Run the program:
+   Or install using [cargo-binstall](https://github.com/cargo-bins/cargo-binstall):
+   ```bash
+   cargo binstall termux-backup
+   ```
+3. Run the program:
    ```bash
    termux-backup
    ```
