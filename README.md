@@ -31,7 +31,7 @@ A Rust program to backup and restore your Termux home and sysroot directories.
    ```bash
    git clone https://github.com/rc-chuah/termux-backup
    ```
-   or
+   Or
    ```bash
    git clone https://github.com/RaynerSec/termux-backup
    ```
