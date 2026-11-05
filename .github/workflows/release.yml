@@ -63,7 +63,7 @@ jobs:
           cp "target/${{ matrix.target }}/release/termux-backup" "dist/termux-backup-${{ matrix.abi }}"
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: termux-backup-${{ matrix.abi }}
           path: dist/termux-backup-${{ matrix.abi }}
